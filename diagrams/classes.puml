@@ -9,6 +9,12 @@ BaseModel <|-- Concept
 BaseModel <|-- Venue
 BaseModel <|-- Author
 
+class OpenAlex{
+    +email: Optional[str]
+    +base_url = "https://api.openalex.org/"
+    +get_work()
+}
+
 class Work {
     ids: Ids
     display_name: Optional[str]
@@ -60,10 +66,10 @@ class Author{
     orcid: Optional[str]
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+'enum TimeUnit {
+'DAYS
+'HOURS
+'MINUTES
+'}
 
 @enduml

@@ -1,6 +1,6 @@
 from unittest import TestCase
 
-from rich import print
+# from rich import print
 
 from openalexapi import OpenAlex, Work
 

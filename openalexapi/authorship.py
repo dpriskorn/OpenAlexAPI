@@ -2,8 +2,8 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
-from author import Author
-from institution import Institution
+from openalexapi.author import Author
+from openalexapi.institution import Institution
 
 
 class Authorship(BaseModel):

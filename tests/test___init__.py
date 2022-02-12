@@ -1,7 +1,9 @@
 from unittest import TestCase
 
-from openalexapi import OpenAlex, Work
 from rich import print
+
+from openalexapi import OpenAlex, Work
+
 
 class TestOpenAlex(TestCase):
     def test_get_work(self):

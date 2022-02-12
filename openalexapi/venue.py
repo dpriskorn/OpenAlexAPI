@@ -5,16 +5,24 @@ from pydantic import BaseModel
 
 
 class Venue(BaseModel):
-    id: Optional[URL]
+    id: Optional[str]
     issn_l: Optional[str]
     issn: Optional[List[str]]
     display_name: Optional[str]
     publisher: Optional[str]
     type: Optional[str]
-    url: Optional[URL]
+    url: Optional[str]
     is_oa: Optional[bool]
     version: Optional[str]
     license: Optional[str]
 
     class Config:
         arbitrary_types_allowed = True
+
+    @property
+    def id(self):
+        return URL(self.id)
+
+    @property
+    def url(self):
+        return URL(self.url)

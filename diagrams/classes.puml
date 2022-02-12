@@ -4,10 +4,10 @@
 abstract class BaseModel
 
 BaseModel <|-- OpenAlex
-BaseModel <|- Work
-BaseModel <|- Concept
-BaseModel <|- Venue
-BaseModel <|- Author
+BaseModel <|-- Work
+BaseModel <|-- Concept
+BaseModel <|-- Venue
+BaseModel <|-- Author
 
 class Work {
     ids: Ids

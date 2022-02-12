@@ -1,0 +1,12 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+[OpenAlexAPI]
+
+cloud "OpenAlex" {
+interface "HTTP JSON API" as httpoa
+  'httpoa - [OpenAlex]
+  [OpenAlexAPI] --> httpoa
+}
+
+@enduml

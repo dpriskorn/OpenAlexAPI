@@ -7,12 +7,57 @@ BaseModel <|-- OpenAlex
 BaseModel <|- Work
 BaseModel <|- Concept
 BaseModel <|- Venue
+BaseModel <|- Author
 
 class Work {
+    ids: Ids
+    display_name: Optional[str]
+    title: Optional[str]
+    publication_year: Optional[conint(le=2023, ge=0)]
+    publication_date: Optional[str]
+    type: Optional[str]
+    host_venue: Optional[Venue]
+    open_access: Optional[OpenAccess]
+    authorships: Optional[List[Authorship]]
+    cited_by_count: Optional[int]
+    is_retracted: Optional[bool]
+    is_paratext: Optional[bool]
+    concepts: Optional[List[Concept]]
+    mesh: Optional[List[Mesh]]
+    alternate_host_venues: Optional[List[Venue]]
+    referenced_works: Optional[List[str]]
+    related_works: Optional[List[str]]
+    abstract_inverted_index: Optional[Dict[str, List[int]]]
+    counts_by_year: Optional[List[Year]]
+    cited_by_api_url: Optional[str]
+    biblio: Optional[Biblio]
+
 }
 class Concept {
+    id: Optional[str]
+    wikidata: Optional[str]
+    display_name: Optional[str]
+    level: Optional[int]
+    score: Optional[float]
+
 }
 class Venue {
+    id: Optional[str]
+    issn_l: Optional[str]
+    issn: Optional[List[str]]
+    display_name: Optional[str]
+    publisher: Optional[str]
+    type: Optional[str]
+    url: Optional[str]
+    is_oa: Optional[bool]
+    version: Optional[str]
+    license: Optional[str]
+}
+
+class Author{
+    id: Optional[str]
+    display_name: Optional[str]
+    orcid: Optional[str]
 }
 
 enum TimeUnit {

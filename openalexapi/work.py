@@ -36,9 +36,6 @@ class Work(BaseModel):
     cited_by_api_url: Optional[str]
     biblio: Optional[Biblio]
 
-    class Config:
-        arbitrary_types_allowed = True
-
     @property
     def cited_by_api_url(self):
         return URL(self.cited_by_api_url)

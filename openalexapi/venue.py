@@ -16,9 +16,6 @@ class Venue(BaseModel):
     version: Optional[str]
     license: Optional[str]
 
-    class Config:
-        arbitrary_types_allowed = True
-
     @property
     def id(self):
         return URL(self.id)

@@ -10,7 +10,7 @@ class OpenAlex(BaseModel):
     """This models the OpenAlex HTTP API
     OpenAlex has 2 pools for clients.
     Please be nice and supply your email the first argument
-    when calling this class to get the polite pool. This way
+    when calling this class to get into the polite pool. This way
     OpenAlex can contact you if needed.
     :parameter=email
     """
@@ -21,7 +21,7 @@ class OpenAlex(BaseModel):
         if self.email is None:
             print("OpenAlex has 2 pools for clients. "
                   "Please be nice and supply your email the first argument "
-                  "when calling this class to get the polite pool. This way "
+                  "when calling this class to get into the polite pool. This way "
                   "OpenAlex can contact you if needed.")
         url = self.base_url + "works/" + id
         params = {

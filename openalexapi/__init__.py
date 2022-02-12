@@ -9,9 +9,7 @@ from openalexapi.work import Work
 class OpenAlex(BaseModel):
     """This models the OpenAlex HTTP API
     OpenAlex has 2 pools for clients.
-    Please be nice and supply your email the first argument
-    when calling this class to get into the polite pool. This way
-    OpenAlex can contact you if needed.
+    Supplying your email will get you into the polite pool.
     :parameter=email
     """
     email: Optional[str]
@@ -24,7 +22,7 @@ class OpenAlex(BaseModel):
         see https://docs.openalex.org/api/get-single-entities#namespace-id-format"""
         if self.email is None:
             print("OpenAlex has 2 pools for clients. "
-                  "Please be nice and supply your email the first argument "
+                  "Please be nice and supply your email as the first argument "
                   "when calling this class to get into the polite pool. This way "
                   "OpenAlex can contact you if needed.")
         url = self.base_url + "works/" + id

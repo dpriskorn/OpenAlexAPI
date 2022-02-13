@@ -1,9 +1,9 @@
-from enum import Enum
 from typing import Optional, List, Dict
 
 from purl import URL
 from pydantic import BaseModel, conint
 
+from enums import WorkType
 from openalexapi.authorship import Authorship
 from openalexapi.biblio import Biblio
 from openalexapi.concept import Concept
@@ -12,11 +12,6 @@ from openalexapi.mesh import Mesh
 from openalexapi.openaccess import OpenAccess
 from openalexapi.venue import Venue
 from openalexapi.year import Year
-
-
-class WorkType(Enum):
-    BOOK = "book"
-    JOURNAL_ARTICLE = "journal-article"
 
 
 class Work(BaseModel):

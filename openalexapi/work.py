@@ -1,3 +1,4 @@
+from enum import Enum
 from typing import Optional, List, Dict
 
 from purl import URL
@@ -13,13 +14,18 @@ from openalexapi.venue import Venue
 from openalexapi.year import Year
 
 
+class WorkType(Enum):
+    BOOK = "book"
+    JOURNAL_ARTICLE = "journal-article"
+
+
 class Work(BaseModel):
     ids: Ids
     display_name: Optional[str]
     title: Optional[str]
     publication_year: Optional[conint(le=2023, ge=0)]
     publication_date: Optional[str]
-    type: Optional[str]
+    type: Optional[WorkType]
     host_venue: Optional[Venue]
     open_access: Optional[OpenAccess]
     authorships: Optional[List[Authorship]]

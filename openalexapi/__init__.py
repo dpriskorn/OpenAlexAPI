@@ -26,11 +26,11 @@ class OpenAlex(BaseModel):
                   "when calling this class to get into the polite pool. This way "
                   "OpenAlex can contact you if needed.")
         url = self.base_url + "works/" + id
-        params = {
+        headers = {
             "Accept": "application/json",
             "User-Agent": f"OpenAlexAPI https://github.com/dpriskorn/OpenAlexAPI mailto:{self.email}"
         }
-        response = requests.get(url, params=params)
+        response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return Work(**response.json())
         else:

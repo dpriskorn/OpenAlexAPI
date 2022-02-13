@@ -14,16 +14,28 @@ class Ids(BaseModel):
 
     @property
     def doi_id(self):
-        return self.doi.replace("https://doi.org/", "")
+        if self.doi is not None:
+            return self.doi.replace("https://doi.org/", "")
+        else:
+            return None
 
     @property
     def doi_url(self):
-        return URL(self.doi)
+        if self.doi is not None:
+            return URL(self.doi)
+        else:
+            return None
 
     @property
     def pmid_id(self):
-        return self.pmid.replace("https://pubmed.ncbi.nlm.nih.gov/", "")
+        if self.pmid is not None:
+            return self.pmid.replace("https://pubmed.ncbi.nlm.nih.gov/", "")
+        else:
+            return None
 
     @property
     def pmid_url(self):
-        return URL(self.pmid)
+        if self.pmid is not None:
+            return URL(self.pmid)
+        else:
+            return None

@@ -15,7 +15,7 @@ class OpenAlex(BaseModel):
     email: Optional[str]
     base_url = "https://api.openalex.org/"
 
-    def get_single_work(self, id):
+    def get_single_work(self, id) -> Optional[Work]:
         """This models the single work entity endpoint
 
         :parameter id can be and OpenAlex ID e.g. "W123" or a namespace ID like "doi:10.123"
@@ -33,5 +33,7 @@ class OpenAlex(BaseModel):
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return Work(**response.json())
+        elif response.status_code == 404:
+            return None
         else:
             raise ValueError(f"Got {response.status_code} from OpenAlex")

@@ -1,5 +1,6 @@
 from typing import Optional
 
+import backoff as backoff
 import requests
 from pydantic import BaseModel
 
@@ -15,6 +16,11 @@ class OpenAlex(BaseModel):
     email: Optional[str]
     base_url = "https://api.openalex.org/"
 
+    @backoff.on_exception(backoff.expo,
+                          (requests.exceptions.Timeout,
+                           requests.exceptions.ConnectionError),
+                          max_time=60,
+                          on_backoff=print(f"Backing off"))
     def get_single_work(self, id: str) -> Optional[Work]:
         """This models the single work entity endpoint
 

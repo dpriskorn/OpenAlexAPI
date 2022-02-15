@@ -1,11 +1,9 @@
 from typing import Optional
 
-from purl import URL
-from pydantic import BaseModel
+from basetype import OpenAlexBaseType
 
 
-class Concept(BaseModel):
-    id: Optional[str]
+class Concept(OpenAlexBaseType):
     wikidata: Optional[str]
     display_name: Optional[str]
     level: Optional[int]
@@ -15,13 +13,9 @@ class Concept(BaseModel):
         arbitrary_types_allowed = True
 
     @property
-    def id(self):
-        return URL(self.id)
-
-    @property
     def wikidata_id(self):
         return self.wikidata.replace("https://www.wikidata.org/wiki/", "")
 
     @property
     def wikidata_wiki_url(self):
-        return URL(self.wikidata)
+        return self.wikidata

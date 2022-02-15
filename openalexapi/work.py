@@ -1,12 +1,12 @@
 from typing import Optional, List, Dict
 
-from purl import URL
-from pydantic import BaseModel, conint
+from pydantic import conint
 
-from enums import WorkType
+from basetype import OpenAlexBaseType
 from openalexapi.authorship import Authorship
 from openalexapi.biblio import Biblio
 from openalexapi.concept import Concept
+from openalexapi.enums import WorkType
 from openalexapi.ids import Ids
 from openalexapi.mesh import Mesh
 from openalexapi.openaccess import OpenAccess
@@ -14,7 +14,7 @@ from openalexapi.venue import Venue
 from openalexapi.year import Year
 
 
-class Work(BaseModel):
+class Work(OpenAlexBaseType):
     ids: Ids
     display_name: Optional[str]
     title: Optional[str]
@@ -30,15 +30,9 @@ class Work(BaseModel):
     concepts: Optional[List[Concept]]
     mesh: Optional[List[Mesh]]
     alternate_host_venues: Optional[List[Venue]]
-    referenced_works: Optional[List[str]]
-    related_works: Optional[List[str]]
+    referenced_works: Optional[List[str]]  # this is urls like https://openalex.org/W123
+    related_works: Optional[List[str]]  # this is urls like https://openalex.org/W123
     abstract_inverted_index: Optional[Dict[str, List[int]]]
     counts_by_year: Optional[List[Year]]
     cited_by_api_url: Optional[str]
     biblio: Optional[Biblio]
-
-    @property
-    def cited_by_api_url(self):
-        return URL(self.cited_by_api_url)
-
-    # TODO decide whether to output referenced works as URL or str

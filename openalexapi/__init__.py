@@ -15,11 +15,13 @@ class OpenAlex(BaseModel):
     email: Optional[str]
     base_url = "https://api.openalex.org/"
 
-    def get_single_work(self, id) -> Optional[Work]:
+    def get_single_work(self, id: str) -> Optional[Work]:
         """This models the single work entity endpoint
 
         :parameter id can be and OpenAlex ID e.g. "W123" or a namespace ID like "doi:10.123"
         see https://docs.openalex.org/api/get-single-entities#namespace-id-format"""
+        if id is None:
+            raise ValueError("id was None")
         if self.email is None:
             print("OpenAlex has 2 pools for clients. "
                   "Please be nice and supply your email as the first argument "

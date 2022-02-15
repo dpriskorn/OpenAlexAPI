@@ -1,11 +1,9 @@
 from typing import Optional
 
-from purl import URL
-from pydantic import BaseModel
+from basetype import OpenAlexBaseType
 
 
-class Author(BaseModel):
-    id: Optional[str]
+class Author(OpenAlexBaseType):
     display_name: Optional[str]
     orcid: Optional[str]
 
@@ -13,13 +11,9 @@ class Author(BaseModel):
         arbitrary_types_allowed = True
 
     @property
-    def id(self):
-        return URL(self.id)
-
-    @property
     def orcid_url(self):
-        return URL(self.orcid)
+        return self.orcid
 
     @property
     def orcid_id(self):
-        return self.orcid.replace("https://doi.org/")
+        return self.orcid.replace("https://orcid.org/", "")

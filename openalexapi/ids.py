@@ -1,6 +1,5 @@
 from typing import Optional
 
-from purl import URL
 from pydantic import BaseModel
 
 
@@ -21,10 +20,7 @@ class Ids(BaseModel):
 
     @property
     def doi_url(self):
-        if self.doi is not None:
-            return URL(self.doi)
-        else:
-            return None
+        return self.doi
 
     @property
     def pmid_id(self):
@@ -35,7 +31,4 @@ class Ids(BaseModel):
 
     @property
     def pmid_url(self):
-        if self.pmid is not None:
-            return URL(self.pmid)
-        else:
-            return None
+        return self.pmid

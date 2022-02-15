@@ -1,6 +1,6 @@
 from typing import Optional
 
-from basetype import OpenAlexBaseType
+from openalexapi.basetype import OpenAlexBaseType
 
 
 class Author(OpenAlexBaseType):

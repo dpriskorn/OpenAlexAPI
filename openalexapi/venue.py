@@ -1,10 +1,10 @@
 from typing import Optional, List
 
-from basetype import OpenAlexBaseType
+from openalexapi.basetype import OpenAlexBaseType
 
 
 class Venue(OpenAlexBaseType):
-    issn_l: Optional[str]
+    issn_l: Optional[str]  # What is this?
     issn: Optional[List[str]]
     display_name: Optional[str]
     publisher: Optional[str]

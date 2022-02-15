@@ -1,8 +1,8 @@
 from typing import Optional
 
-from pydantic import BaseModel, constr
+from pydantic import constr
 
-from basetype import OpenAlexBaseType
+from openalexapi.basetype import OpenAlexBaseType
 
 
 class Institution(OpenAlexBaseType):

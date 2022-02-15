@@ -2,7 +2,7 @@ from typing import Optional, List, Dict
 
 from pydantic import conint
 
-from basetype import OpenAlexBaseType
+from openalexapi.basetype import OpenAlexBaseType
 from openalexapi.authorship import Authorship
 from openalexapi.biblio import Biblio
 from openalexapi.concept import Concept

@@ -1,10 +1,13 @@
-import backoff
+import logging
 from typing import Optional
 
+import backoff
 import requests
 from pydantic import BaseModel
 
 from openalexapi.work import Work
+
+logger = logging.getLogger(__name__)
 
 
 class OpenAlex(BaseModel):

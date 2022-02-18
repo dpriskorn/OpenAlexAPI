@@ -1,7 +1,7 @@
 import logging
 from typing import Optional
 
-import backoff
+import backoff  # type: ignore
 import requests
 from pydantic import BaseModel
 

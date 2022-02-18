@@ -4,9 +4,10 @@ from pydantic import BaseModel
 
 
 class Ids(BaseModel):
-    doi: Optional[str]
-    pmid: Optional[str]
-    mag: Optional[str]
+    doi: Optional[str]  # DOI
+    pmid: Optional[str]  # PubMed ID
+    mag: Optional[str]  # Microsoft Academic Graph
+    issn_l: Optional[str]  # What is this?
 
     class Config:
         arbitrary_types_allowed = True

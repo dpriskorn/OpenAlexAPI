@@ -3,7 +3,8 @@ from typing import Optional, List
 from openalexapi.basetype import OpenAlexBaseType
 
 
-class Venue(OpenAlexBaseType):
+class DehydratedVenue(OpenAlexBaseType):
+    issn_l: Optional[str]  #
     issn: Optional[List[str]]
     display_name: Optional[str]
     publisher: Optional[str]

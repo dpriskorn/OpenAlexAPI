@@ -6,6 +6,7 @@ import requests
 from pydantic import BaseModel
 
 from openalexapi.work import Work
+from venue import Venue
 
 logger = logging.getLogger(__name__)
 
@@ -45,6 +46,32 @@ class OpenAlex(BaseModel):
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return Work(**response.json())
+        elif response.status_code == 404:
+            return None
+        else:
+            raise ValueError(f"Got {response.status_code} from OpenAlex")
+
+    def get_single_venue(self, id: str) -> Optional[Work]:
+        """This models the single venue entity endpoint
+
+        :parameter id can be and OpenAlex ID e.g. "V123" or a namespace ID like "issn_l:0924-9338"
+        see https://docs.openalex.org/api/get-single-entities#namespace-id-format"""
+        if id is None:
+            raise ValueError("id was None")
+        if self.email is None:
+            print("OpenAlex has 2 pools for clients. "
+                  "Please be nice and supply your email as the first argument "
+                  "when calling this class to get into the polite pool. This way "
+                  "OpenAlex can contact you if needed.")
+        url = self.base_url + "venues/" + id
+        logger.debug(f"Fetching {url}")
+        headers = {
+            "Accept": "application/json",
+            "User-Agent": f"OpenAlexAPI https://github.com/dpriskorn/OpenAlexAPI mailto:{self.email}"
+        }
+        response = requests.get(url, headers=headers)
+        if response.status_code == 200:
+            return Venue(**response.json())
         elif response.status_code == 404:
             return None
         else:

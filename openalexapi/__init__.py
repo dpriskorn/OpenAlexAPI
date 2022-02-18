@@ -1,6 +1,6 @@
+import backoff
 from typing import Optional
 
-import backoff as backoff
 import requests
 from pydantic import BaseModel
 
@@ -34,6 +34,7 @@ class OpenAlex(BaseModel):
                   "when calling this class to get into the polite pool. This way "
                   "OpenAlex can contact you if needed.")
         url = self.base_url + "works/" + id
+        logger.debug(f"Fetching {url}")
         headers = {
             "Accept": "application/json",
             "User-Agent": f"OpenAlexAPI https://github.com/dpriskorn/OpenAlexAPI mailto:{self.email}"

@@ -16,7 +16,7 @@ class OpenAlex(BaseModel):
     Supplying your email will get you into the polite pool.
     :parameter=email
     """
-    email: Optional[str]
+    email: Optional[EmailStr]
     base_url = "https://api.openalex.org/"
 
     @backoff.on_exception(backoff.expo,

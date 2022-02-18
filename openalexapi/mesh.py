@@ -1,5 +1,13 @@
-from pydantic import BaseModel
+from typing import Optional
 
+from pydantic import BaseModel, constr
 
 class Mesh(BaseModel):
-    pass
+    """This models the mesh object at OpenAlex.
+    Unfortunately it does not contain the year when the term
+    was added to MESH nor if it is still a valid MESH term"""
+    descriptor_ui: constr(max_length=7, min_length=7)
+    is_main_topic: bool
+    descriptor_name: str
+    qualifier_ui: Optional[str]
+    qualifier_name: Optional[str]

@@ -7,7 +7,7 @@ from openalexapi.authorship import Authorship
 from openalexapi.biblio import Biblio
 from openalexapi.concept import Concept
 from openalexapi.enums import WorkType
-from openalexapi.ids import Ids
+from openalexapi.ids import WorkIds
 from openalexapi.mesh import Mesh
 from openalexapi.openaccess import OpenAccess
 from openalexapi.venue import Venue
@@ -15,7 +15,7 @@ from openalexapi.year import Year
 
 
 class Work(OpenAlexBaseType):
-    ids: Ids
+    ids: Optional[WorkIds]
     display_name: Optional[str]
     title: Optional[str]
     publication_year: Optional[conint(le=2023, ge=0)]

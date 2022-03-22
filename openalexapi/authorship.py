@@ -2,7 +2,7 @@ from typing import Optional, List
 
 from pydantic import BaseModel
 
-from openalexapi.dehydrated_author import DehydratedAuthor
+from openalexapi.author import DehydratedAuthor
 from openalexapi.institution import Institution
 
 

@@ -5,10 +5,10 @@ import backoff  # type: ignore
 import requests
 from pydantic import BaseModel
 
+from openalexapi.author import Author
 from openalexapi.work import Work
 
 logger = logging.getLogger(__name__)
-
 
 class OpenAlex(BaseModel):
     """This models the OpenAlex HTTP API
@@ -24,10 +24,10 @@ class OpenAlex(BaseModel):
                            requests.exceptions.ConnectionError),
                           max_time=60,
                           on_backoff=print(f"Backing off"))
-    def get_single_work(self, id: str) -> Optional[Work]:
-        """This models the single work entity endpoint
+    def get_single_entity(self, id: str, endpoint: str) -> Optional[Author | Work]:
+        """This models the single author entity endpoint
 
-        :parameter id can be and OpenAlex ID e.g. "W123" or a namespace ID like "doi:10.123"
+        :parameter id can be an OpenAlex ID e.g. "A123" or a namespace ID
         see https://docs.openalex.org/api/get-single-entities#namespace-id-format"""
         if id is None:
             raise ValueError("id was None")
@@ -36,7 +36,7 @@ class OpenAlex(BaseModel):
                   "Please be nice and supply your email as the first argument "
                   "when calling this class to get into the polite pool. This way "
                   "OpenAlex can contact you if needed.")
-        url = self.base_url + "works/" + id
+        url = self.base_url + endpoint + id
         logger.debug(f"Fetching {url}")
         headers = {
             "Accept": "application/json",
@@ -44,8 +44,17 @@ class OpenAlex(BaseModel):
         }
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
-            return Work(**response.json())
+            return self.get_type(endpoint, response.json())
         elif response.status_code == 404:
             return None
         else:
             raise ValueError(f"Got {response.status_code} from OpenAlex")
+
+    def get_type(self, endpoint: str, val: dict):
+        match endpoint:
+            case "works/":
+                return Work(**val)
+            case "authors/":
+                return Author(**val)
+            case _:
+                raise ValueError(f"Wrong endpoint value")

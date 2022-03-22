@@ -1,10 +1,15 @@
 from typing import Optional, List
 
-from openalexapi.dehydrated_author import DehydratedAuthor
+from openalexapi.basetype import OpenAlexBaseType
 from openalexapi.ids import AuthorIds
 from openalexapi.institution import Institution
 from openalexapi.concept import Concept
 from openalexapi.year import Year
+
+
+class DehydratedAuthor(OpenAlexBaseType):
+    display_name: Optional[str]
+    orcid: Optional[str]
 
 
 class Author(DehydratedAuthor):

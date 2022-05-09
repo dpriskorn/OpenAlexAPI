@@ -77,8 +77,8 @@ class OpenAlex(BaseModel):
         works = []
         # Limit of 50 is imposed by OpenAlex API
         for i in range(0, len(ids), 50):
-            ids = '|'.join(ids[i:i+50])
-            url = self.base_url + f"works?filter=openalex_id:{ids}&per_page=50"
+            url_ids = '|'.join(ids[i:i+50])
+            url = self.base_url + f"works?filter=openalex_id:{url_ids}&per_page=50"
             logger.debug(f"Fetching works {i} through {i+50}")
             response = requests.get(url, headers=headers)
             if response.status_code == 200:

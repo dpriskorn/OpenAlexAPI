@@ -3,10 +3,49 @@ from typing import Optional
 from pydantic import BaseModel
 
 
-class Ids(BaseModel):
+class BaseIds(BaseModel):
+    openalex: Optional[str]
+    mag: Optional[int]  # Microsoft Academics Graph
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    @property
+    def openalex_id(self):
+        if self.openalex is not None:
+            return self.openalex.replace("https://openalex.org/", "")
+        else:
+            return None
+
+    @property
+    def openalex_url(self):
+        return self.openalex
+
+
+class AuthorIds(BaseIds):
+    orcid: Optional[str]
+    twitter: Optional[str]
+    wikipedia: Optional[str]
+    scopus: Optional[str]
+
+    class Config:
+        arbitrary_types_allowed = True
+
+    @property
+    def orcid_id(self):
+        if self.orcid is not None:
+            return self.orcid.replace("https://orcid.org/", "")
+        else:
+            return None
+
+    @property
+    def orcid_url(self):
+        return self.orcid
+
+
+class WorkIds(BaseIds):
     doi: Optional[str]
     pmid: Optional[str]
-    mag: Optional[str]
 
     class Config:
         arbitrary_types_allowed = True

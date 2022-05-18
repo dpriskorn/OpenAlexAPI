@@ -2,7 +2,7 @@ from unittest import TestCase
 
 # from rich import print
 
-from openalexapi import OpenAlex, Work
+from openalexapi import OpenAlex, Work, Author
 
 
 class TestOpenAlex(TestCase):
@@ -18,6 +18,20 @@ class TestOpenAlex(TestCase):
         work = oa.get_single_work("doi:10.7717/peerj.4375")
         # print(work.dict())
         if not isinstance(work, Work):
+            self.fail()
+
+    def test_get_single_author(self):
+        oa = OpenAlex()
+        author = oa.get_single_author("A2479313101")
+        # print(author.dict())
+        if not isinstance(author, Author):
+            self.fail()
+
+    def test_get_entity(self):
+        oa = OpenAlex()
+        author = oa.get_single_entity("A2479313101", Author, "authors/")
+        # print(author.dict())
+        if not isinstance(author, Author):
             self.fail()
 
     # def test_get_single_work_via_pmid_namespace(self):

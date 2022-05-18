@@ -1,11 +1,29 @@
-from typing import Optional
+from typing import Optional, List
 
 from openalexapi.basetype import OpenAlexBaseType
+from openalexapi.ids import AuthorIds
+from openalexapi.institution import Institution
+from openalexapi.concept import Concept
+from openalexapi.year import Year
 
 
-class Author(OpenAlexBaseType):
+class DehydratedAuthor(OpenAlexBaseType):
     display_name: Optional[str]
     orcid: Optional[str]
+
+
+class Author(DehydratedAuthor):
+    display_name_alternatives: Optional[List[str]]
+    works_count: Optional[int]
+    cited_by_count: Optional[int]
+    ids: Optional[AuthorIds]
+    last_known_institutions: Optional[Institution]
+    x_concepts: Optional[List[Concept]]
+    counts_by_year: Optional[List[Year]]
+    works_api_url: Optional[str]
+    updated_date: Optional[str]
+    created_date: Optional[str]
+
 
     class Config:
         arbitrary_types_allowed = True
@@ -16,4 +34,7 @@ class Author(OpenAlexBaseType):
 
     @property
     def orcid_id(self):
-        return self.orcid.replace("https://orcid.org/", "")
+        if self.orcid is not None:
+            return self.orcid.replace("https://orcid.org/", "")
+        else:
+            return None

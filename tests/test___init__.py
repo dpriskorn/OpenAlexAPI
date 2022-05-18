@@ -27,6 +27,13 @@ class TestOpenAlex(TestCase):
         if not isinstance(author, Author):
             self.fail()
 
+    def test_get_entity(self):
+        oa = OpenAlex()
+        author = oa.get_single_entity("A2479313101", Author, "authors/")
+        # print(author.dict())
+        if not isinstance(author, Author):
+            self.fail()
+
     # def test_get_single_work_via_pmid_namespace(self):
     #     oa = OpenAlex()
     #     work = oa.get_single_work("pmid:29456894")

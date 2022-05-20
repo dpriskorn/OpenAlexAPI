@@ -3,7 +3,7 @@ from typing import Optional, List
 
 import backoff  # type: ignore
 import requests
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 from openalexapi.work import Work
 

@@ -1,3 +1,6 @@
+"""
+Copyright 2022 Dennis Priskorn
+"""
 from pydantic import BaseModel, conint
 
 

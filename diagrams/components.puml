@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/component-diagram
+'Copyright 2022 Dennis Priskorn
 
 [OpenAlexAPI]
 

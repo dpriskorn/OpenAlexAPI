@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
-
+'Copyright 2022 Dennis Priskorn
 abstract class BaseModel
 
 BaseModel <|-- OpenAlex

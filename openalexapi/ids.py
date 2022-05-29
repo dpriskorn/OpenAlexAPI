@@ -10,6 +10,9 @@ class Ids(BaseModel):
     doi: Optional[str]
     pmid: Optional[str]
     mag: Optional[str]
+    twitter: Optional[str]
+    wikipedia: Optional[str]
+    scopus: Optional[str]
 
     class Config:
         arbitrary_types_allowed = True
@@ -35,3 +38,4 @@ class Ids(BaseModel):
     @property
     def pmid_url(self):
         return self.pmid
+

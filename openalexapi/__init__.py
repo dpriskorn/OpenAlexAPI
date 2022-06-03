@@ -11,7 +11,7 @@ from pydantic import BaseModel, EmailStr
 from openalexapi.basetype import OpenAlexBaseType
 from openalexapi.work import Work
 from openalexapi.author import Author, DehydratedAuthor
-from openalexapi.work import Concept, DehydratedConcept
+from openalexapi.concept import Concept, DehydratedConcept
 from openalexapi.venue import Venue, DehydratedVenue, HostVenue
 from openalexapi.institution import Institution, DehydratedInstitution
 
@@ -42,7 +42,7 @@ class OpenAlex(BaseModel):
             DehydratedInstitution: _base_url+"works?filter=institutions.id:",
             Venue: _base_url+"works?filter=host_venue.id:",
             DehydratedVenue: _base_url+"works?filter=host_venue.id:",
-            Host: _base_url+"works?filter=host_venue.id:"
+            HostVenue: _base_url+"works?filter=host_venue.id:"
         }
     _entities_prefixes: dict = {
         'A':Author,

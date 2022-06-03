@@ -33,7 +33,7 @@ class Venue(OpenAlexBaseType):
 
 class DehydratedVenue(OpenAlexBaseType):
     issn_l: Optional[str]
-    issn: Optional[str]
+    issn: Optional[List[str]]
     display_name: Optional[str]
     publisher: Optional[str]
     

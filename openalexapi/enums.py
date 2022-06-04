@@ -34,3 +34,34 @@ class WorkType(Enum):
     REPORT_SERIES = "report-series"
     STANDARD = "standard"
     STANDARD_SERIES = "standard-series"
+
+#used in host_venue
+class VersionType(Enum):
+    PUBLISHED_VERSION="publishedVersion"
+    ACCEPTED_VERSION="acceptedVersion"
+    SUBMITTED_VERSION="submittedVersion"
+
+#used in institituion
+class InstitutionalRelationship(Enum):
+    PARENT="parent"
+    CHILD="child"
+    RELATED="related"
+    
+#used in institituion
+class InstitutionType(Enum):
+    EDUCATION="education"
+    HEALTHCARE="healthcare"
+    COMPANY="company"
+    ARCHIVE="archive"
+    NONPROFIT="nonprofit"
+    GOVERNMENT="government"
+    FACILITY="facility"
+    OTHER="other"
+    
+#used in openaccess
+class OpenAccessStatus(Enum):
+    GOLD="gold"
+    GREEN="green"
+    HYBRID="hybrid"
+    BRONZE="bronze"
+    CLOUD="cloud"

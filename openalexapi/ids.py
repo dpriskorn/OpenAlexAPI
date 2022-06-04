@@ -1,7 +1,7 @@
 """
 Copyright 2022 Dennis Priskorn
 """
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
 
@@ -10,7 +10,18 @@ class Ids(BaseModel):
     doi: Optional[str]
     pmid: Optional[str]
     mag: Optional[str]
-
+    twitter: Optional[str]
+    wikipedia: Optional[str]
+    scopus: Optional[str]
+    ror: Optional[str]
+    grid: Optional[str]
+    wikidata: Optional[str]
+    umls_aui: Optional[List[str]]
+    umls_cui: Optional[List[str]]
+    issn_l: Optional[str]
+    issn: Optional[str]
+    orcid: Optional[str]
+    
     class Config:
         arbitrary_types_allowed = True
 
@@ -35,3 +46,4 @@ class Ids(BaseModel):
     @property
     def pmid_url(self):
         return self.pmid
+

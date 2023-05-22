@@ -7,6 +7,7 @@ from pydantic import BaseModel
 
 
 class Ids(BaseModel):
+    openalex: Optional[str]
     doi: Optional[str]
     pmid: Optional[str]
     mag: Optional[str]
